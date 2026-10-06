@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#11172f">
+  <title>A little snow, just for you</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="sky-glow" aria-hidden="true"></div>
+  <svg class="landscape" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path class="mountain far" d="M0 285 125 185l86 70 160-150 150 164 131-106 112 108 152-189 147 178 140-109 237 155v134H0Z"/>
+    <path class="mountain mid" d="m0 335 177-130 127 95 153-127 131 150 138-101 133 99 128-160 159 156 113-91 181 120v94H0Z"/>
+    <path class="mountain near" d="m0 365 178-86 153 88 143-104 177 105 164-72 168 79 152-108 149 95 156-86v164H0Z"/>
+    <g class="cabins">
+      <path d="m130 358 34-29 35 29v34h-69Z"/><path class="roof" d="m122 360 42-37 43 37Z"/><rect class="window" x="145" y="369" width="10" height="13"/><rect class="window" x="172" y="369" width="10" height="13"/>
+      <path d="m1170 340 39-31 39 31v42h-78Z"/><path class="roof" d="m1161 342 48-40 49 40Z"/><rect class="window" x="1182" y="355" width="12" height="15"/><rect class="window" x="1214" y="355" width="12" height="15"/>
+      <path d="m1310 369 29-23 31 23v29h-60Z"/><path class="roof" d="m1304 371 35-29 37 29Z"/><rect class="window" x="1321" y="379" width="9" height="12"/>
+    </g>
+  </svg>
+  <main class="world">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Snow world home"><span>✳</span> snowglobe</a>
+      <button class="heart" id="note-open" aria-label="Open a little note">🤍</button>
+    </header>
+    <nav class="scene-nav" aria-label="Snow world scenes">
+      <button class="nav-item active" data-scene="home">❄️ <span>Snowfall</span></button>
+      <button class="nav-item" data-scene="snowman">☃️ <span>Snowman</span></button>
+      <button class="nav-item" data-scene="storm">🌨️ <span>Snowstorm</span></button>
+      <button class="nav-item" data-scene="catch">✨ <span>Catch flakes</span></button>
+    </nav>
+    <section class="scene active" id="scene-home" aria-labelledby="home-title">
+      <div class="home-copy"><p class="eyebrow">A tiny winter hideaway</p><h1 id="home-title">❄️ A little snow,<br>just for you.</h1><p class="subtle">Stay a little. The snow isn't going anywhere.</p><button class="soft-button" data-go="snowman">Build a snowman <span>→</span></button></div>
+      <div class="hint">A quiet little world, all your own</div>
+    </section>
+    <section class="scene" id="scene-snowman" aria-labelledby="snowman-title" hidden>
+      <div class="panel snowman-panel"><p class="eyebrow">A frosty friend</p><h1 id="snowman-title">Build-a-snowman</h1>
+        <div class="snowman-stage" id="snowman-stage" aria-label="Your customizable snowman">
+          <div class="snowman" id="snowman">
+            <div class="hat" id="hat"></div>
+            <button class="ball head" id="head-part" aria-label="Change face and hat"><span class="face" id="face"></span></button>
+            <button class="ball torso" id="torso-part" aria-label="Change scarf color"><span class="scarf" id="scarf"></span></button>
+            <div class="ball base"></div><span class="arm arm-left"></span><span class="arm arm-right"></span>
+          </div><div class="sparkles" id="sparkles" aria-hidden="true">✦　·　✧　·　✦</div>
+        </div>
+        <p class="caption">Make him however you like. He's yours.</p>
+        <div class="option-row"><button class="choice" id="face-choice">🙂 <span>Face</span></button><button class="choice" id="hat-choice">🎩 <span>Hat</span></button><button class="choice" id="scarf-choice">🧣 <span>Scarf</span></button><button class="choice" id="arms-choice">🌿 <span>Arms</span></button></div>
+        <p class="tap-hint">Tap a button to change each detail</p>
+      </div>
+    </section>
+    <section class="scene" id="scene-storm" aria-labelledby="storm-title" hidden>
+      <div class="panel storm-panel"><div class="storm-icon">☁️❄️</div><p class="eyebrow">Let it swirl</p><h1 id="storm-title">A little weather</h1><p class="caption">Sometimes you want a flurry. Sometimes you want a full storm. Your call.</p><button class="soft-button storm-toggle" id="storm-toggle" aria-pressed="false">Make it snow harder ❄️</button><p class="storm-state" id="storm-state">A soft hush of snow</p></div>
+    </section>
+    <section class="scene" id="scene-catch" aria-labelledby="catch-title" hidden>
+      <div class="panel catch-panel"><p class="eyebrow">A tiny game</p><h1 id="catch-title">Catch the snowflakes</h1><p class="caption">No score to beat. Just catch a few if you feel like it.</p><div class="catch-count"><span id="count">0</span><small>snowflakes caught</small></div><p class="tap-hint">Tap a falling flake anywhere ✨</p></div>
+    </section>
+    <footer class="footer">made of snow & a little bit of code <span>✳</span></footer>
+  </main>
+  <dialog id="note-dialog"><button class="dialog-close" id="note-close" aria-label="Close note">×</button><div class="note-heart">🤍</div><p>I know how much you love snow, so I built you some. Hope it makes you smile for a second.</p><p class="signature">— Kamran</p></dialog>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
